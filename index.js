@@ -111,3 +111,40 @@ async function updatePlayerScore(username) {
     let updatedPlayer = await updatedResponse.json();
     document.getElementById("score").innerText = `Score: ${updatedPlayer.score}`
 }
+
+
+var hintIndex = 0;
+
+async function hint() {
+    let res = await fetch("https://restcountries.com/v3.1/name/" + dataimg);
+    let c = (await res.json())[0];
+
+    let languagesText;
+    if (c.languages) {
+        languagesText = Object.values(c.languages).join(", ");
+    } else {
+        languagesText = "No Languages";
+    }
+
+    let capitalText;
+    if (c.capital && c.capital.length > 0) {
+        capitalText = c.capital[0];
+    } else {
+        capitalText = "No Capital";
+    }
+
+    let hints = [
+        `Region: ${c.region}`,
+        `SubRegion: ${c.subregion}`,
+        `Capital: ${capitalText}`,
+        `Languages: ${languagesText}`
+    ];
+
+    if (isNaN(hintIndex)) {
+        hintIndex = 0;
+    } else {
+        hintIndex = hintIndex % hints.length;
+    }
+
+    document.getElementById("hints").innerHTML = hints[hintIndex++];
+}
