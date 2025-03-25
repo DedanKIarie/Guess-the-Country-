@@ -55,6 +55,18 @@ function login() {
 }
 
 
-function getcountries() {
+async function getCountries() {
+    let url;
+    let continent = document.getElementById("continent").value;
+    document.getElementById("new-country").innerText = "Next Country"
+    if (continent === "all") {
+        url = "https://restcountries.com/v3.1/all";
+    } else {
+        url = `https://restcountries.com/v3.1/region/${continent}`;
+    }
     
+    let response = await fetch(url);
+    let result = await response.json();
+    console.log(result);
 }
+
