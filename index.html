@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Country Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-container">
+        <input type="text" id="username" placeholder="Enter Username">
+        <button id="login-btn">Login</button>
+    </div>
+
+    <h1>Guess the Country</h1>
+
+    <div id="game-container">
+        <p id="player-name">Player: Not Logged In</p>
+        
+        <label for="continent">Choose a Continent:</label>
+        <select id="continent">
+            <option value="all">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Americas">Americas</option>
+            <option value="Oceania">Oceania</option>
+        </select>
+
+        <div>
+            <img id="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/1200px-Flag_of_Kenya.svg.png" alt="Country Flag">
+        </div>
+
+        <input type="text" id="guess" placeholder="Enter country name...">
+        <button id="check-answer">Check Answer</button>
+        <button id="new-country">New Country</button>
+
+        <p id="hints">Hint: It is the capital city of Africa 😂😂</p>
+        <p id="score">Score: 0</p>
+    </div>
+
+</body>
+</html>
