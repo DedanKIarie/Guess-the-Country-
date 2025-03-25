@@ -54,7 +54,7 @@ function login() {
     getplayer();
 }
 
-
+var dataimg = ""
 async function getCountries() {
     let url;
     let continent = document.getElementById("continent").value;
@@ -74,7 +74,7 @@ async function getCountries() {
 
         let i = Math.floor(Math.random()*randomcountry)
         console.log(i)
-
+        dataimg= result[i].name.common
         document.getElementById("flag").src = result[i].flags.png;
 
     }
@@ -83,3 +83,11 @@ async function getCountries() {
 }
 
 
+function checkanswer() {
+    console.log(dataimg)
+if (document.getElementById("guess").value == dataimg) {
+    console.log("correct") 
+} else {
+    console.log("incorrect")
+}
+}
