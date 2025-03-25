@@ -68,5 +68,18 @@ async function getCountries() {
     let response = await fetch(url);
     let result = await response.json();
     console.log(result);
+    function randomize() {
+        let randomcountry = result.length
+        console.log(randomcountry)
+
+        let i = Math.floor(Math.random()*randomcountry)
+        console.log(i)
+
+        document.getElementById("flag").src = result[i].flags.png;
+
+    }
+    randomize()
+
 }
+
 
