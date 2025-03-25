@@ -10,10 +10,11 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
     console.log(`JSON Server is running on port ${PORT}`);
 });
-
+var user = ""
 //start function
 function getplayer() {
     let playerbox = document.getElementById("username").value.trim();
+    user = playerbox
     if (playerbox === "") {
         console.log("Username is empty");
         return;
@@ -52,6 +53,7 @@ function getplayer() {
 
 function login() {
     getplayer();
+    updatePlayerScore(user)
 }
 
 var dataimg = ""
@@ -87,7 +89,25 @@ function checkanswer() {
     console.log(dataimg)
 if (document.getElementById("guess").value == dataimg) {
     console.log("correct") 
+    updatePlayerScore(user)
+    getCountries()
 } else {
     console.log("incorrect")
 }
+}
+async function updatePlayerScore(username) {
+    let response = await fetch("https://guess-the-country-ofgg.onrender.com/players");
+    let players = await response.json();
+    let player = players.find(p => p.username === username);
+
+    if (!player) return console.log("Player not found.");
+
+    let updatedResponse = await fetch(`https://guess-the-country-ofgg.onrender.com/players/${player.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ score: player.score + 1 })
+    });
+
+    let updatedPlayer = await updatedResponse.json();
+    document.getElementById("score").innerText = `Score: ${updatedPlayer.score}`
 }
