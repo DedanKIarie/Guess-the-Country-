@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
     console.log(`JSON Server is running on port ${PORT}`);
 });
+
+
+
 var user = ""
 //start function
 function getplayer() {
@@ -28,7 +31,7 @@ function getplayer() {
             for (let i = 0; i < players.length; i++) {
                 if (players[i].username === playerbox) {
                     playerExists = true;
-                    console.log("Player exists:", players[i]);
+                     document.getElementById("status").innerHTML = "Successful log in"
                     break;
                 }
             }
@@ -47,7 +50,7 @@ function getplayer() {
                 .then(data => {
                     console.log("New player added:", data);
                     document.getElementById("status").innerHTML = "New player added: " + playerbox
-
+                    document.getElementById("player-name").innerText = `Welcome: ${playerbox}`
                     setTimeout(function() {
                          document.getElementById("status").innerHTML = "Remember to relog in after refreshing the page"
                     }, 2000);
@@ -164,3 +167,19 @@ async function hint() {
 function closeInstructions() {
     document.getElementById("instructions-container").style.display = "none";
 }
+
+
+
+async function fetchLeaderboard() {
+    let response = await fetch("https://guess-the-country-ofgg.onrender.com/players");
+    let players = await response.json();
+    players.sort((a, b) => b.score - a.score);
+
+    let leaderboardHTML = "<h2>Leaderboard</h2><ul>";
+    players.forEach((player, index) => {
+        leaderboardHTML += `<li>${index + 1}. ${player.username} - Score: ${player.score}</li>`;
+    });
+    leaderboardHTML += "</ul>";
+    document.getElementById("leaderboard").innerHTML = leaderboardHTML;
+}
+
