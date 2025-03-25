@@ -44,7 +44,11 @@ cd Guess-the-Country-
 ```sh
 npm install
 ```
-4. **And you're ready to go**
+4. **Start the project:**:
+```sh
+npm start
+```
+5. **And you're ready to go**
 
 ## Technology Stack
 1. Frontend: HTML, CSS, JavaScript
