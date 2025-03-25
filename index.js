@@ -15,11 +15,11 @@ var user = ""
 function getplayer() {
     let playerbox = document.getElementById("username").value.trim();
     user = playerbox
-    if (playerbox === "") {
-        console.log("Username is empty");
+    if (!user) {
+         document.getElementById("status").innerHTML = "Please enter a name"
         return;
     }
-
+     document.getElementById("status").innerHTML = "Starting up json server"
     fetch("https://guess-the-country-ofgg.onrender.com/players")
         .then(response => response.json())
         .then(players => {
@@ -34,7 +34,7 @@ function getplayer() {
             }
 
             if (!playerExists) {
-                console.log(`player not found adding ${playerbox}`);
+                document.getElementById("status").innerHTML = `player not found adding ${playerbox}`
                 
                 let newPlayer = { username: playerbox, score: 0, Wins:0 };
 
@@ -46,6 +46,11 @@ function getplayer() {
                 .then(response => response.json())
                 .then(data => {
                     console.log("New player added:", data);
+                    document.getElementById("status").innerHTML = "New player added: " + playerbox
+
+                    setTimeout(function() {
+                         document.getElementById("status").innerHTML = "Remember to relog in after refreshing the page"
+                    }, 2000);
                 });
             }
         })
@@ -58,6 +63,13 @@ function login() {
 
 var dataimg = ""
 async function getCountries() {
+
+    let playerbox = document.getElementById("username").value.trim();
+    user = playerbox
+    if (!user) {
+        console.log("Username is empty");
+        return;
+    }
     let url;
     let continent = document.getElementById("continent").value;
     document.getElementById("new-country").innerText = "Next Country"
@@ -147,4 +159,8 @@ async function hint() {
     }
 
     document.getElementById("hints").innerHTML = hints[hintIndex++];
+}
+
+function closeInstructions() {
+    document.getElementById("instructions-container").style.display = "none";
 }

@@ -12,6 +12,7 @@
     <div id="login-container">
         <input type="text" id="username" placeholder="Enter Username">
         <button id="login-btn" onclick="login()">Login</button>
+        <p id="status">You are currently not logged in</p>
     </div>
 
     <h1>Guess the Country</h1>
@@ -41,6 +42,22 @@
         <p id="score">Score: 0</p>
         <button id="new-country" onclick="getCountries()">Start Game</button>
     </div>
+
+    <div id="instructions-container">
+        <h2>How to Play</h2>
+        <p>MAKE sure to follow these steps inorder the game to work properly for you:</p>
+        <ul>
+            <li><strong>Make sure to log in first.</strong></li>
+            <li>Press "Start Game" buttom to start the game.</li>
+            <li>Guess the country based on the flag shown.</li>
+            <li>Type your answer in the input field.</li>
+            <li>Click the "Check Answer" button to check your answer.</li>
+            <li>Use the "Hint" button to get clues about the country.</li>
+            <li>Earn points for correct answers!</li>
+        </ul>
+        <button onclick="closeInstructions()">Got It!</button>
+    </div>
+    
 
 </body>
 </html>
