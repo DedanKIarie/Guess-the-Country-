@@ -187,4 +187,47 @@ async function fetchLeaderboard() {
     leaderboardHTML += "</ul>";
     document.getElementById("leaderboard").innerHTML = leaderboardHTML;
 }
+function updateTheme() {
+    let theme = document.getElementById("Dropdown").value
 
+    if (theme === "Dark") {
+        setDarkTheme();
+    } else if (theme === "Light") {
+        setLightTheme();
+    } else if (theme === "Blue") {
+        setBlueTheme();
+    } else if (theme === "Retro") {
+        setRetroTheme();
+    }
+}
+
+function setDarkTheme() {
+    applyTheme("black", "black", "white", "white", "black", "white", "gray", "white");
+}
+
+function setLightTheme() {
+    applyTheme("white", "white", "black", "black", "white", "black", "#ddd", "black")
+}
+
+function setBlueTheme() {
+    applyTheme("#001f3f", "#003366", "white", "lightblue", "#004080", "lightblue", "#0074cc", "white")
+}
+
+function setRetroTheme() {
+    applyTheme("#003300", "#004d00", "#00ff00", "#00ff00", "#002200", "#00ff00", "#005500", "#00ff00")
+}
+
+function applyTheme(gameBg, instructionsBg, textColor, bodyColor, bodyBg, guessBg, buttonBg, buttonColor) {
+    document.getElementById("game-container").style.background = gameBg
+    document.getElementById("instructions-container").style.background = instructionsBg;
+    document.getElementById("player-name").style.color = textColor
+    document.body.style.color = bodyColor
+    document.body.style.background = bodyBg
+    document.getElementById("guess").style.background = guessBg;
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.style.background = buttonBg
+        button.style.color = buttonColor
+        button.style.border = "1px solid " + textColor
+    });
+}

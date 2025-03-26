@@ -23,8 +23,9 @@ body {
 #flag {
     width: 200px;
     height: 120px;
-    border: 1px solid #ddd;
+    border: 3px solid #000000;
     margin-bottom: 10px;
+    border-radius: 12px;
 }
 
 input, select, button {
@@ -153,4 +154,10 @@ button:hover {
 
 #leaderboard li:hover {
     background-color: #f1f1f1;
+}
+
+#side-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }

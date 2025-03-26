@@ -38,7 +38,7 @@
         <button id="check-answer" onclick="checkanswer()">Check Answer</button>
         <button id="Hint" onclick="hint()">Hint</button>
 
-        <p id="hints">Hint: It is the capital city of Africa 😂😂</p>
+        <p id="hints"></p>
         <p id="score">Score: 0</p>
         <button id="new-country" onclick="getCountries()">Start Game</button>
     </div>
@@ -62,6 +62,17 @@
         <div id="leaderboard">   
         </div>
     </div>
+    <div id="side-panel">
+        <label for="Dropdown">Themes</label>
+        <select id="Dropdown">
+            <option value="Light">Light Theme</option>
+            <option value="Dark">Dark Theme</option>
+            <option value="Blue">Blue Theme</option>
+            <option value="Retro">Retro Theme</option>
+        </select>
+        <button onclick="updateTheme()">Update</button>
+    </div>
+    
     
 </body>
 </html>
