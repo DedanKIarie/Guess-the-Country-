@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     background-color: #f4f4f4;
 }
@@ -76,6 +76,7 @@ button:hover {
     margin-bottom: 10px;
     text-align: center;
     font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #instructions-container p {
@@ -130,6 +131,7 @@ button:hover {
     color: #0363c9;
     margin-bottom: 15px;
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #leaderboard ul {
@@ -160,4 +162,10 @@ button:hover {
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('fonts/CustomFont.woff2') format('woff2'),
+         url('fonts/CustomFont.woff') format('woff');
 }
