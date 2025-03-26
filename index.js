@@ -75,7 +75,7 @@ async function getCountries() {
     }
     let url;
     let continent = document.getElementById("continent").value;
-    document.getElementById("new-country").innerText = "Next Country"
+    document.getElementById("new-country").innerText = "Fetching Countries"
     if (continent === "all") {
         url = "https://restcountries.com/v3.1/all";
     } else {
@@ -96,7 +96,7 @@ async function getCountries() {
 
     }
     randomize()
-
+     document.getElementById("new-country").innerText = "Next Country"
 }
 
 
