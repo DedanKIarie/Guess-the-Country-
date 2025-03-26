@@ -23,6 +23,7 @@ function getplayer() {
         return;
     }
      document.getElementById("status").innerHTML = "Starting up json server"
+     document.getElementById("status").style.color = "blue"
     fetch("https://guess-the-country-ofgg.onrender.com/players")
         .then(response => response.json())
         .then(players => {
@@ -32,12 +33,14 @@ function getplayer() {
                 if (players[i].username === playerbox) {
                     playerExists = true;
                      document.getElementById("status").innerHTML = "Successful log in"
+                     document.getElementById("status").style.color = "Green"
                     break;
                 }
             }
 
             if (!playerExists) {
                 document.getElementById("status").innerHTML = `player not found adding ${playerbox}`
+                document.getElementById("status").style.color = "red"
                 
                 let newPlayer = { username: playerbox, score: 0, Wins:0 };
 
@@ -50,9 +53,11 @@ function getplayer() {
                 .then(data => {
                     console.log("New player added:", data);
                     document.getElementById("status").innerHTML = "New player added: " + playerbox
+                    document.getElementById("status").style.color = "Green"
                     document.getElementById("player-name").innerText = `Welcome: ${playerbox}`
                     setTimeout(function() {
                          document.getElementById("status").innerHTML = "Remember to relog in after refreshing the page"
+                         document.getElementById("status").style.color = "Green"
                     }, 2000);
                 });
             }
