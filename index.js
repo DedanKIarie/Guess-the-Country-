@@ -182,52 +182,59 @@ async function fetchLeaderboard() {
 
     let leaderboardHTML = "<h2>Leaderboard</h2><ul>";
     players.forEach((player, index) => {
-        leaderboardHTML += `<li>${index + 1}. ${player.username} - Score: ${player.score}</li>`;
+        leaderboardHTML += `<li>${index + 1}. ${player.username} - Score: ${player.score}</li>`
     });
     leaderboardHTML += "</ul>";
     document.getElementById("leaderboard").innerHTML = leaderboardHTML;
 }
+
+
 function updateTheme() {
     let theme = document.getElementById("Dropdown").value
 
-    if (theme === "Dark") {
-        setDarkTheme();
-    } else if (theme === "Light") {
-        setLightTheme();
-    } else if (theme === "Blue") {
-        setBlueTheme();
-    } else if (theme === "Retro") {
-        setRetroTheme();
+    let themes = {
+        "Dark": ["rgb(18, 18, 18)", "rgb(26, 26, 26)", "rgb(255, 255, 255)", "rgb(255, 255, 255)", "rgb(18, 18, 18)", "rgb(255, 255, 255)", "rgb(51, 51, 51)", "rgb(255, 255, 255)"],
+        "Light": ["rgb(255, 255, 255)", "rgb(248, 248, 248)", "rgb(0, 0, 0)", "rgb(0, 0, 0)", "rgb(255, 255, 255)", "rgb(0, 0, 0)", "rgb(221, 221, 221)", "rgb(0, 0, 0)"],
+        "Blue": ["rgb(0, 31, 63)", "rgb(0, 51, 102)", "rgb(255, 255, 255)", "rgb(173, 216, 230)", "rgb(0, 64, 128)", "rgb(173, 216, 230)", "rgb(0, 116, 204)", "rgb(255, 255, 255)"],
+        "Retro": ["rgb(0, 51, 0)", "rgb(0, 77, 0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "rgb(0, 34, 0)", "rgb(0, 255, 0)", "rgb(0, 85, 0)", "rgb(0, 255, 0)"],
+        "Cyberpunk": ["rgb(13, 2, 33)", "rgb(36, 0, 70)", "rgb(255, 0, 255)", "rgb(0, 255, 234)", "rgb(27, 0, 47)", "rgb(255, 0, 144)", "rgb(0, 255, 234)", "rgb(27, 0, 47)"],
+        "Forest": ["rgb(45, 74, 45)", "rgb(64, 108, 64)", "rgb(255, 255, 255)", "rgb(210, 231, 210)", "rgb(31, 51, 31)", "rgb(164, 203, 170)", "rgb(90, 131, 90)", "rgb(255, 255, 255)"]
+    };
+
+    if (themes[theme]) {
+        let colors = themes[theme];
+
+        document.getElementById("game-container").style.background = colors[0]
+        document.getElementById("instructions-container").style.background = colors[1]
+        document.getElementById("player-name").style.color = colors[2]
+        document.body.style.color = colors[3];
+        document.body.style.background = colors[4];
+        document.getElementById("guess").style.background = colors[5];
+
+        let buttons = document.querySelectorAll("button");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.background = colors[6]
+            buttons[i].style.color = colors[7];
+            buttons[i].style.border = "1px solid " + colors[2]
+            buttons[i].style.transition = "background 0.3s, color 0.3s"
+        }
+
+        let inputs = document.querySelectorAll("input, select")
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].style.background = colors[4]
+            inputs[i].style.color = colors[2];
+            inputs[i].style.border = "1px solid " + colors[2]
+        }
+
+        let headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for (let i = 0; i < headings.length; i++) {
+            headings[i].style.color = colors[2]
+        }
+
+        let sidePanel = document.getElementById("side-panel")
+        if (sidePanel) {
+            sidePanel.style.background = colors[1]
+            sidePanel.style.color = colors[2]
+        }
     }
-}
-
-function setDarkTheme() {
-    applyTheme("black", "black", "white", "white", "black", "white", "gray", "white");
-}
-
-function setLightTheme() {
-    applyTheme("white", "white", "black", "black", "white", "black", "#ddd", "black")
-}
-
-function setBlueTheme() {
-    applyTheme("#001f3f", "#003366", "white", "lightblue", "#004080", "lightblue", "#0074cc", "white")
-}
-
-function setRetroTheme() {
-    applyTheme("#003300", "#004d00", "#00ff00", "#00ff00", "#002200", "#00ff00", "#005500", "#00ff00")
-}
-
-function applyTheme(gameBg, instructionsBg, textColor, bodyColor, bodyBg, guessBg, buttonBg, buttonColor) {
-    document.getElementById("game-container").style.background = gameBg
-    document.getElementById("instructions-container").style.background = instructionsBg;
-    document.getElementById("player-name").style.color = textColor
-    document.body.style.color = bodyColor
-    document.body.style.background = bodyBg
-    document.getElementById("guess").style.background = guessBg;
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach(button => {
-        button.style.background = buttonBg
-        button.style.color = buttonColor
-        button.style.border = "1px solid " + textColor
-    });
 }
