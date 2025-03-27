@@ -14,7 +14,7 @@ server.listen(PORT, () => {
 
 
 var user = ""
-//start function
+// Function to get and verify player existence
 function getplayer() {
     let playerbox = document.getElementById("username").value.trim();
     user = playerbox
@@ -63,13 +63,14 @@ function getplayer() {
             }
         })
 }
-
+// Function to handle player login
 function login() {
     getplayer();
     updatePlayerScore(user)
 }
 
 var dataimg = ""
+// Function to fetch and display a random country flag
 async function getCountries() {
 
     let playerbox = document.getElementById("username").value.trim();
@@ -104,7 +105,7 @@ async function getCountries() {
      document.getElementById("new-country").innerText = "Next Country"
 }
 
-
+// Function to check player's answer
 function checkanswer() {
     console.log(dataimg)
 if (document.getElementById("guess").value == dataimg) {
@@ -115,6 +116,8 @@ if (document.getElementById("guess").value == dataimg) {
     console.log("incorrect")
 }
 }
+
+// Function to update player score
 async function updatePlayerScore(username) {
     let response = await fetch("https://guess-the-country-ofgg.onrender.com/players");
     let players = await response.json();
@@ -134,7 +137,7 @@ async function updatePlayerScore(username) {
 
 
 var hintIndex = 0;
-
+// Function to provide hints about the country
 async function hint() {
     let res = await fetch("https://restcountries.com/v3.1/name/" + dataimg);
     let c = (await res.json())[0];
@@ -169,12 +172,14 @@ async function hint() {
     document.getElementById("hints").innerHTML = hints[hintIndex++];
 }
 
+
+// Function to close the instructions panel
 function closeInstructions() {
     document.getElementById("instructions-container").style.display = "none";
 }
 
 
-
+// Function to fetch and display the leaderboard
 async function fetchLeaderboard() {
     let response = await fetch("https://guess-the-country-ofgg.onrender.com/players");
     let players = await response.json();
@@ -188,7 +193,7 @@ async function fetchLeaderboard() {
     document.getElementById("leaderboard").innerHTML = leaderboardHTML;
 }
 
-
+// Function to update the theme of the game
 function updateTheme() {
     let theme = document.getElementById("Dropdown").value
 
