@@ -1,37 +1,72 @@
+
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2vh 5vw;
 }
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px;
+    position: relative;
+}
+
+
+#side-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: clamp(12px, 1.5vw, 14px);
+    padding: 5px 10px;
+}
+
 
 #login-container {
     position: absolute;
     top: 10px;
     right: 10px;
+    font-size: clamp(12px, 1.5vw, 14px);
+    padding: 5px 10px;
 }
+
 
 #game-container {
     background: white;
-    padding: 20px;
-    margin: 20px auto;
+    padding: 3vh 4vw;
+    margin: 5vh auto;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     border-radius: 10px;
     box-shadow: 0px 5px 12px grey;
 }
 
+
 #flag {
-    width: 200px;
-    height: 120px;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
     border: 3px solid #000000;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
     border-radius: 12px;
 }
 
+
 input, select, button {
-    margin: 5px;
-    padding: 10px;
-    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin: 1vh 0;
+    padding: 1vh;
+    font-size: clamp(12px, 1.8vw, 16px);
     border-radius: 12px;
     box-shadow: 0px 5px 7px grey;
 }
@@ -42,66 +77,74 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
+    transition: background 0.3s ease;
+    font-size: clamp(12px, 1.8vw, 16px);
+    padding: 1vh;
 }
 
 button:hover {
     background-color: #007bff;
 }
 
+
 #score {
     font-weight: bold;
 }
 
+
 #player-name {
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
 }
 
 
-#instructions-container {
+#instructions-container, #leaderboard-container {
     background: white;
-    padding: 15px;
-    margin: 20px auto;
+    padding: 2vh 4vw;
+    margin: 3vh auto;
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
     border-radius: 10px;
     box-shadow: 0px 5px 12px grey;
     text-align: left;
 }
 
-#instructions-container h2 {
-    font-size: 22px;
+
+#instructions-container h2, #leaderboard-container h2 {
+    font-size: clamp(16px, 2.5vw, 22px);
     color: #0363c9;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
     text-align: center;
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;
 }
 
+
 #instructions-container p {
-    font-size: 16px;
+    font-size: clamp(12px, 1.8vw, 15px);
     color: #333;
     line-height: 1.6;
-    margin: 10px 0;
+    margin: 1.5vh 0;
 }
 
 #instructions-container ul {
-    padding-left: 20px;
+    padding-left: 3vw;
 }
 
 #instructions-container li {
-    font-size: 15px;
+    font-size: clamp(12px, 1.8vw, 14px);
     color: #555;
-    margin-bottom: 8px;
+    margin-bottom: 1vh;
 }
+
 
 #instructions-container button {
     display: block;
     width: 100%;
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 16px;
+    margin-top: 2vh;
+    padding: 1vh;
+    font-size: clamp(12px, 1.8vw, 16px);
     background-color: #0363c9;
     color: white;
     border: none;
@@ -115,25 +158,6 @@ button:hover {
 }
 
 
-#leaderboard-container {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 12px grey;
-    text-align: center;
-}
-
-#leaderboard-container h2 {
-    font-size: 24px;
-    color: #0363c9;
-    margin-bottom: 15px;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-
 #leaderboard ul {
     list-style-type: none;
     padding: 0;
@@ -141,14 +165,13 @@ button:hover {
 }
 
 #leaderboard li {
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 16px);
     color: #333;
-    margin-bottom: 10px;
-    padding: 10px;
+    margin-bottom: 1.5vh;
+    padding: 1.2vh;
     border-bottom: 1px solid #ddd;
     text-align: left;
 }
-
 
 #leaderboard li span {
     font-weight: bold;
@@ -158,11 +181,27 @@ button:hover {
     background-color: #f1f1f1;
 }
 
-#side-panel {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #login-container, #side-panel {
+        position: static;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+
+    #instructions-container, #leaderboard-container {
+        width: 95%;
+    }
 }
+
 
 @font-face {
     font-family: 'CustomFont';
